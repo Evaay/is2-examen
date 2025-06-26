@@ -92,5 +92,8 @@ public class MainPatrimonio {
         patrimonioService.elementosPorMaterial().forEach((materialType, num) -> System.out.println("por numero: " + materialType + " -> " + num));
         System.out.println("antes2000: " + patrimonioService.todosnatesde2000());
         System.out.println("primer nombre Catedral: " + patrimonioService.primerCatedral().name());
+        System.out.println(patrimonioService.anosFabricacion());
+        System.out.println(patrimonioService.anosFabricacion2());
+        System.out.println(patrimonioService.numRecorridoAntesSiglo());
     }
 }

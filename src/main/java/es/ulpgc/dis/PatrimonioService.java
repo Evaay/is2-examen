@@ -142,11 +142,23 @@ public record PatrimonioService(PatrimonioHistorico patrimonioHistorico) {
     //Calcular la suma de los años de fabricación de los elementos entre el q se construyo hasta la actualidad.
     int anosFabricacion() {
         return patrimonioHistorico.elementosPatrimoniales().stream()
-                .forEach(elementoPatrimonial -> Collectors.summingInt(elementoPatrimonial.ano().truncatedTo(ChronoUnit.YEARS)));
+                .collect(Collectors.summingInt(elementoPatrimonial ->
+                        LocalDate.now().getYear() - elementoPatrimonial.ano().atZone(ZoneOffset.UTC).toLocalDate().getYear()));
+    }
+
+    int anosFabricacion2() {
+        return patrimonioHistorico.elementosPatrimoniales().stream()
+                .mapToInt(elementoPatrimonial -> LocalDate.now().getYear() - elementoPatrimonial.ano().atZone(ZoneOffset.UTC).toLocalDate().getYear())
+                .sum();
     }
     //Obtener una lista única de todos los autores sin repetir.
 
     //Filtrar los recorridos que incluyan al menos un elemento del tipo "Estatuas".
     //Obtener una lista de nombres de elementos que pertenezcan a un recorrido con temática "Arte Moderno".
     //Contar cuántos recorridos incluyen elementos construidos antes del siglo XVIII.
+    int numRecorridoAntesSiglo() {
+        return (int) patrimonioHistorico.recorridos().stream()
+                .filter(recorrido -> recorrido.elementoPatrimonial().ano().isBefore(Instant.parse("1701-01-01T00:00:00Z")))
+                .count();
+    }
 }
