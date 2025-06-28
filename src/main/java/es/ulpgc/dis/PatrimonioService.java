@@ -54,7 +54,7 @@ public record PatrimonioService(PatrimonioHistorico patrimonioHistorico) {
     //Ordenar los elementos por año de fabricación (de más antiguo a más moderno).
     List<PatrimonioHistorico.ElementoPatrimonial> elementoPorAno() {
         return patrimonioHistorico.elementosPatrimoniales().stream()
-                .sorted((p1, p2) -> p2.ano().compareTo(p1.ano()))
+                .sorted((p1, p2) -> p1.ano().compareTo(p2.ano()))
                 .toList();
     }
     //Ordenar los elementos por nombre alfabéticamente. (desde la A a la z)
