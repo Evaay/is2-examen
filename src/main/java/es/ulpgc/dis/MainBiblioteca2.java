@@ -44,8 +44,8 @@ public class MainBiblioteca2 {
                 List<Ejemplar> ej = ejemplares();
                 return List.of(
                         new Prestamo(fecha(2024, 4, 1), fecha(2024, 4, 20), "PR-001", usuarios.get(0), ej.get(0)),
-                        new Prestamo(fecha(2024, 5, 5), fecha(2024, 5, 25), "PR-002", usuarios.get(1), ej.get(1)),
-                        new Prestamo(fecha(2024, 4, 22), fecha(2024, 4, 20), "PR-002", usuarios.get(1), ej.get(0))
+                        new Prestamo(fecha(2024, 5, 5), fecha(2024, 5, 22), "PR-002", usuarios.get(1), ej.get(1)),
+                        new Prestamo(fecha(2024, 4, 22), fecha(2024, 4, 22), "PR-003", usuarios.get(1), ej.get(0))
                         );
             }
 
@@ -53,7 +53,8 @@ public class MainBiblioteca2 {
             public List<Devolucion> devoluciones() {
                 List<Prestamo> pr = prestamos();
                 return List.of(
-                        new Devolucion(fecha(2024, 4, 21), pr.get(0))
+                        new Devolucion(fecha(2024, 4, 21), pr.get(0)),
+                        new Devolucion(fecha(2024, 4, 25), pr.get(1))
                 );
             }
 

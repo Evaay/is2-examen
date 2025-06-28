@@ -7,17 +7,26 @@ import es.ulpgc.dis.Biblioteca2.Book;
 
 public record BibliotecaService2(Biblioteca2 biblioteca2) {
     void librosDisponibles() {
-        List<String> ejemplaresPrestados = biblioteca2.prestamos().stream()
-                .filter(prestamo -> biblioteca2.devoluciones().stream()
-                        .noneMatch(devolucion -> devolucion.prestamo().equals(prestamo)))
-                .map(prestamo -> prestamo.ejemplar().id())
+        List<Biblioteca2.Prestamo> ejemplaresPrestados = biblioteca2.prestamos().stream()
+                .filter(prestamo -> notExistDevolution(prestamo))
                 .toList();
-
         biblioteca2.ejemplares().stream()
-                .filter(ejemplar -> !ejemplaresPrestados.contains(ejemplar.id()))
-                .map(Biblioteca2.Ejemplar::book)
-                .distinct()
-                .forEach(libro -> System.out.println("Disponible: " + libro.title() + libro.));
+                .filter(ejemplar -> isValid(ejemplar, ejemplaresPrestados))
+                .map(ejemplar -> ejemplar.id())
+                .forEach(ejemplarId -> System.out.println(ejemplarId));
     }
 
+    private boolean isValid(Biblioteca2.Ejemplar ejemplar, List<Biblioteca2.Prestamo> ejemplaresPrestados) {
+        int estaPrestado = (int) ejemplaresPrestados.stream()
+                .filter(prestamo -> prestamo.ejemplar().id().equals(ejemplar.id()))
+                .count();
+        return estaPrestado == 0;
+    }
+
+    private boolean notExistDevolution(Biblioteca2.Prestamo prestamo) {
+        int numDevolucion = (int) biblioteca2.devoluciones().stream()
+                .filter(devolucion -> (devolucion.prestamo().id().equals(prestamo.id())))
+                .count();
+        return numDevolucion == 0;
+    }
 }
