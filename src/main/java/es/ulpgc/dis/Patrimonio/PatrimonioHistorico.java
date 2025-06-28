@@ -1,4 +1,4 @@
-package es.ulpgc.dis;
+package es.ulpgc.dis.Patrimonio;
 
 import java.time.Instant;
 import java.util.List;

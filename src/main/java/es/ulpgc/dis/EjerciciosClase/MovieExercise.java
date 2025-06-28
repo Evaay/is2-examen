@@ -9,8 +9,7 @@ public record MovieExercise(List<Movie> movies) {
 //    Obtener el número de películas de cada director
 //    Map<Movie.Director, Integer> numMovieDirector() {
 //        return movies.stream()
-//                .flatMap(movie -> movie.directors().stream()
-//                        .map(director -> Map.Entry(director, movie)));
+//                .flatMap(movie -> movie.directors().stream());
 //    }
 //    Obtener el número de géneros de las películas de cada director
 //    Obtener la lista de películas que solo tienen los géneros "Drama" y "Comedia"

@@ -1,6 +1,4 @@
-package es.ulpgc.dis;
-
-import org.w3c.dom.ls.LSInput;
+package es.ulpgc.dis.Patrimonio;
 
 import java.time.Instant;
 import java.time.LocalDate;

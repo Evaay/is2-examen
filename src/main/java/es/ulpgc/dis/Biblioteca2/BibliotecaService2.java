@@ -1,9 +1,6 @@
-package es.ulpgc.dis;
+package es.ulpgc.dis.Biblioteca2;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
-import es.ulpgc.dis.Biblioteca2.Book;
 
 public record BibliotecaService2(Biblioteca2 biblioteca2) {
     void librosDisponibles() {

@@ -1,9 +1,7 @@
-package es.ulpgc.dis;
+package es.ulpgc.dis.Patrimonio;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 public class MainPatrimonio {
     public static void main(String[] args) {
