@@ -219,9 +219,9 @@ public record BibliotecaService(Biblioteca biblioteca) {
                         )
                 ));
 
-        Optional<PrestamoStatus> prestamosrecientes = biblioteca.prestamosStatus().stream()
+        PrestamoStatus prestamosrecientes = biblioteca.prestamosStatus().stream()
                 .sorted((e1, e2) -> e2.ts().compareTo(e1.ts()))
-                .findFirst();
+                .findFirst().orElseThrow();
 
         Map<String, Optional<PrestamoStatus>> prestamosPorLibros2 = biblioteca.prestamosStatus().stream()
                 .collect(Collectors.groupingBy(
